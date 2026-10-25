@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+
+      - name: Install Rust target
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+          rustup target add aarch64-unknown-linux-musl
+
+      - name: Check tag and package version
+        shell: bash
+        run: |
+          version=$(sed -n 's/^version = "\([^"]*\)"/\1/p' package/plugin.toml)
+          test "v${version}" = "${GITHUB_REF_NAME}"
+
+      - name: Run Rust tests
+        run: cargo test --locked
+
+      - name: Build AArch64 package
+        run: ./build-yap.sh
+
+      - name: Verify package and checksum
+        shell: bash
+        run: |
+          test "$(tar -tzf ya-ambilight-universal-aarch64.yap | wc -l)" -eq 3
+          tar -tzf ya-ambilight-universal-aarch64.yap | grep -Fx 'plugin.toml'
+          tar -tzf ya-ambilight-universal-aarch64.yap | grep -Fx 'config.toml'
+          tar -tzf ya-ambilight-universal-aarch64.yap | grep -Fx 'bin/ya-ambilight-universal'
+          file package/bin/ya-ambilight-universal | grep -q 'ARM aarch64'
+          sha256sum ya-ambilight-universal-aarch64.yap > ya-ambilight-universal-aarch64.yap.sha256
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            ya-ambilight-universal-aarch64.yap \
+            ya-ambilight-universal-aarch64.yap.sha256 \
+            --verify-tag \
+            --title "YA Ambilight ${GITHUB_REF_NAME}" \
+            --generate-notes

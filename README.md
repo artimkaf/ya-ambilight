@@ -39,6 +39,10 @@ HyperHDR отправляет последовательность RGB-байт�
 
 ## Сборка
 
+Готовый `.yap` для AArch64 доступен на странице [Releases](https://github.com/artimkaf/ya-ambilight/releases). Рядом публикуется файл `.sha256` для проверки загрузки. При отправке тега `vX.Y.Z` GitHub Actions проверяет версию пакета, запускает Rust-тесты, собирает `.yap` и создаёт релиз.
+
+Если хотите собрать пакет самостоятельно:
+
 ```sh
 rustup target add aarch64-unknown-linux-musl
 ./build-yap.sh
