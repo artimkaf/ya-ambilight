@@ -1,0 +1,22 @@
+# HyperHDR UDP Raw input
+bind = "0.0.0.0:5568"
+max_input_blocks = 490
+frame_rate = 15
+stream_timeout_ms = 1500
+loss = "release"
+
+# Color adjustments
+brightness = 0.35
+gamma = 1.0
+red_gain = 1.0
+green_gain = 1.0
+blue_gain = 1.0
+channel_order = "RGB"
+
+# Ring geometry: offset wraps by the LED count reported by YAM.
+ring_offset = 0
+ring_reverse = false
+test_mode = "off"
+
+# Only on a 24-zone ring when YAM reports led.logo.rgb.
+logo_mode = "average"
