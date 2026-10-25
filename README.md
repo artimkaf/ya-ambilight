@@ -38,6 +38,16 @@
 
 ## Установка / сборка `.yap`
 
+### Установка с помощью [yse](https://hackalice.me/start/packages/#_1)
+
+```sh
+yse install yap:ya-ambilight
+```
+
+После успешной установки можете переходить к пункту **Настройка HyperHDR**
+
+### Установка `.yap`
+
 Готовый `.yap` для AArch64 доступен на странице [Releases](https://github.com/artimkaf/ya-ambilight/releases). Рядом публикуется файл `.sha256` для проверки загрузки. При отправке тега `vX.Y.Z` GitHub Actions проверяет версию пакета, запускает Rust-тесты, собирает `.yap` и создаёт релиз.
 
 Начиная с `v0.3.0`, ID пакета, Rust-бинарник и имя архива — `ya-ambilight`; отображаемое имя в YAM — **YA Ambilight**. При добавлении в `yapkg` путь будет `packages/ya-ambilight/0.3.0.yap`.
@@ -52,6 +62,8 @@ rustup target add aarch64-unknown-linux-musl
 Получится `ya-ambilight.yap`. В архив входят `plugin.toml`, `config.toml` и статически собранный бинарный файл. Настройки из [`package/config.toml`](package/config.toml) попадают в архив **на момент сборки**. Каталоги `target/`, готовый бинарник и `.yap` не хранятся в Git.
 
 ## Установка на колонку
+
+### Установка с помощью yam
 
 Подставьте IP своей колонки вместо примера:
 
