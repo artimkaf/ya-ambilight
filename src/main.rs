@@ -407,7 +407,7 @@ fn run() -> Result<(), String> {
                 api.frame(ring)?;
                 if logo_enabled {
                     if let Err(error) = api.logo_frame(logo) {
-                        eprintln!("ya-ambilight-universal: logo API unavailable: {error}; continuing with ring");
+                        eprintln!("ya-ambilight: logo API unavailable: {error}; continuing with ring");
                         logo_enabled = false;
                     }
                 }
@@ -423,7 +423,7 @@ fn run() -> Result<(), String> {
                 api.frame(vec!["#000000".into(); layout.ring])?;
                 if logo_enabled {
                     if let Err(error) = api.logo_frame(vec!["#000000".into(); 6]) {
-                        eprintln!("ya-ambilight-universal: logo API unavailable: {error}; continuing with ring");
+                        eprintln!("ya-ambilight: logo API unavailable: {error}; continuing with ring");
                         logo_enabled = false;
                     }
                 }
@@ -441,7 +441,7 @@ fn run() -> Result<(), String> {
 }
 fn main() {
     if let Err(e) = run() {
-        eprintln!("ya-ambilight-universal: {e}");
+        eprintln!("ya-ambilight: {e}");
         std::process::exit(1);
     }
 }

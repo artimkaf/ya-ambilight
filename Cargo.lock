@@ -167,8 +167,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "ya-ambilight-universal"
-version = "0.2.1"
+name = "ya-ambilight"
+version = "0.3.0"
 dependencies = [
  "serde",
  "serde_json",

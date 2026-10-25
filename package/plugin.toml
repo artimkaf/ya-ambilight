@@ -1,14 +1,14 @@
-id = "ya-ambilight-universal"
+id = "ya-ambilight"
 name = "YA Ambilight"
-version = "0.2.1"
-entry = "bin/ya-ambilight-universal"
+version = "0.3.0"
+entry = "bin/ya-ambilight"
 description = "HyperHDR UDP Raw RGB to YAM rings, with optional Midi logo"
 permissions = ["exec", "led"]
 
 [launch]
 kind = "binary"
 mode = "service"
-path = "bin/ya-ambilight-universal"
+path = "bin/ya-ambilight"
 
 [compatibility]
 features = ["led.ring.rgb"]

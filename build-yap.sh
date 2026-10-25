@@ -15,7 +15,7 @@ if [ -z "${CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER:-}" ]; then
 fi
 cargo build --release --locked --target "$target"
 mkdir -p package/bin
-cp "target/$target/release/ya-ambilight-universal" package/bin/ya-ambilight-universal
-chmod 755 package/bin/ya-ambilight-universal
-tar -C package -czf ya-ambilight-universal-aarch64.yap plugin.toml config.toml bin/ya-ambilight-universal
-echo "Built ya-ambilight-universal-aarch64.yap"
+cp "target/$target/release/ya-ambilight" package/bin/ya-ambilight
+chmod 755 package/bin/ya-ambilight
+tar -C package -czf ya-ambilight.yap plugin.toml config.toml bin/ya-ambilight
+echo "Built ya-ambilight.yap"

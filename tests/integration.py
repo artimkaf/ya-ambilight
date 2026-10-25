@@ -11,7 +11,7 @@ import threading
 import time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-API = "/api/runtime/ya-ambilight-universal"
+API = "/api/runtime/ya-ambilight"
 
 
 def free_udp_port():
@@ -61,7 +61,7 @@ def run_case(count, logo_feature, logo_endpoint):
         env = os.environ.copy()
         env["YAM_API_URL"] = f"http://127.0.0.1:{server.server_port}{API}"
         env["YAM_API_TOKEN"] = "test-token"
-        process = subprocess.Popen([ROOT / "target/debug/ya-ambilight-universal"], cwd=directory, env=env)
+        process = subprocess.Popen([ROOT / "target/debug/ya-ambilight"], cwd=directory, env=env)
         try:
             time.sleep(0.15)
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
